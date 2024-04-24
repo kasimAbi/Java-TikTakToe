@@ -12,9 +12,9 @@ public class Computer {
 	}
 	
 	public Playground setPoint(Playground playground) {	
-		int returnValue;		// für rückgabewerte von methoden
+		int returnValue;		// fï¿½r rï¿½ckgabewerte von methoden
 		switch(this.level) {	// je nach level, welches ausgesucht wurde vom spieler wird mit switch/case ausgesucht.
-		case "1":	// einfach. wird eine zufällige zahl generiert und gesetzt.
+		case "1":	// einfach. wird eine zufï¿½llige zahl generiert und gesetzt.
 			while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));
 			break;
 		case "2":	// mittel. wird kontrolliert ob jemand am gewinnen ist, wird entweder geblockt oder gewinnt selber. hierbei ist egal wer am gewinnen ist. wenn zB. computer und spieler
@@ -29,7 +29,7 @@ public class Computer {
 			}
 			break;
 		case "3":	// schwer
-			returnValue = playground.amGewinnen(symbol);	// kontrolliert ob CPU am gewinnen ist und erste Priorität ist es zu gewinnen.
+			returnValue = playground.amGewinnen(symbol);	// kontrolliert ob CPU am gewinnen ist und erste Prioritï¿½t ist es zu gewinnen.
 			if(returnValue != 0) {
 				if(!playground.setzeSymbol(this.symbol, this.getPoint(returnValue))) {
 					while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));
@@ -40,13 +40,13 @@ public class Computer {
 					if(!playground.setzeSymbol(this.symbol, this.getPoint(returnValue))) {
 						while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));
 					}
-				} else {	// wenn keiner am gewinnen ist, dann prüft er sonderfälle. heißt ob der gegner ihn austricksen möchte.
-					returnValue = playground.sonderFälle();
+				} else {	// wenn keiner am gewinnen ist, dann prï¿½ft er sonderfï¿½lle. heiï¿½t ob der gegner ihn austricksen mï¿½chte.
+					returnValue = playground.sonderFaelle();
 					if(returnValue != 0) {
 						if(!playground.setzeSymbol(this.symbol, this.getPoint(returnValue))) {
 							while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));
 						}
-					} else {	// wenn der gegner ihn nicht austricksen möchte oder kann, versucht er in eines der wichtigen felder zu setzen. wenn das auch nciht geht dann zufällig irgendwo.
+					} else {	// wenn der gegner ihn nicht austricksen mï¿½chte oder kann, versucht er in eines der wichtigen felder zu setzen. wenn das auch nciht geht dann zufï¿½llig irgendwo.
 						if(!playground.wichtigeFelder(symbol)){
 							while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));
 						}
@@ -55,13 +55,13 @@ public class Computer {
 			}
 			break;
 		default: while(!playground.setzeSymbol(this.symbol, this.getPoint((int)(Math.random() * 9) + 1)));		// wenn benutzer bei schwierigkeitsauswahl was falsches eingegeben hat, ist
-																												// automatisch schwierigkeit einfach. und es wird zufällig irgendwo gesetzt.
+																												// automatisch schwierigkeit einfach. und es wird zufï¿½llig irgendwo gesetzt.
 		}
-		return playground;	// das spielfeld wird überarbeitet zurückgegeben.
+		return playground;	// das spielfeld wird ï¿½berarbeitet zurï¿½ckgegeben.
 	}
 	
 	public String getPoint(int randomPoint) {
-		switch(randomPoint) {	// da das Spielfeld mit String felder arbeitet, werden die Zahlen die vom zufallsgenerator erstellt worden sind, je nach feld in String zurückgegeben.
+		switch(randomPoint) {	// da das Spielfeld mit String felder arbeitet, werden die Zahlen die vom zufallsgenerator erstellt worden sind, je nach feld in String zurï¿½ckgegeben.
 		case 1: return "q1";
 		case 2: return "w1";
 		case 3: return "e1";

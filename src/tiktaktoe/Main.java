@@ -1,6 +1,5 @@
 package tiktaktoe;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -13,37 +12,37 @@ public class Main {
 		
 		Playground playground = new Playground();
 		Scanner input = new Scanner(System.in);
-		String selection = "0";		// menüauswahl
-		// solange ausführen wie selection ungleich 9 ist.
+		String selection = "0";		// menï¿½auswahl
+		// solange ausfï¿½hren wie selection ungleich 9 ist.
 		while(!selection.equals("9")) {
-			// menü
-			System.out.print("Bitte auswählen:\n (1) player vs player\n (2) player vs computer\n (3) Score anzeigen\n (4) Spielernamen eintragen/ändern für Spieler 1\n (5) Spielernamen eintragen/ändern für Spieler 2\n (6) Reihenfolge zwischen Spieler und Spieler ändern\n (7) Spielernamen eintragen/ändern für Spieler gegen Computer.\n (8) Reihenfolge zwischen Spieler und Computer ändern.\n (9) Programm beenden\n\nIhre Wahl: ");
+			// menï¿½
+			System.out.print("Bitte auswï¿½hlen:\n (1) player vs player\n (2) player vs computer\n (3) Score anzeigen\n (4) Spielernamen eintragen/ï¿½ndern fï¿½r Spieler 1\n (5) Spielernamen eintragen/ï¿½ndern fï¿½r Spieler 2\n (6) Reihenfolge zwischen Spieler und Spieler ï¿½ndern\n (7) Spielernamen eintragen/ï¿½ndern fï¿½r Spieler gegen Computer.\n (8) Reihenfolge zwischen Spieler und Computer ï¿½ndern.\n (9) Programm beenden\n\nIhre Wahl: ");
 			selection = input.nextLine();
 			System.out.println("\n\n");
 			// variablendeklarationen
 			String aktuellesSymbol = "", feld = "";
 			
-			switch(selection) {		// je nach was man bei menü ausgesucht hat wird ausgeführt
+			switch(selection) {		// je nach was man bei menï¿½ ausgesucht hat wird ausgefï¿½hrt
 				case "1": 	// player vs player
-					playground.spielfeldLeeren();		// spielfeld leeren/ bzw. mit freiesFeld-Symbol (*) füllen (siehe Klasse Playground).
-					aktuellesSymbol = playerOne.getSymbol();	// Symbol, welcher an der Reihe ist wird in aktuellesSymbol überschrieben.
+					playground.spielfeldLeeren();		// spielfeld leeren/ bzw. mit freiesFeld-Symbol (*) fï¿½llen (siehe Klasse Playground).
+					aktuellesSymbol = playerOne.getSymbol();	// Symbol, welcher an der Reihe ist wird in aktuellesSymbol ï¿½berschrieben.
 					
-					for(int sequence = 0; sequence < 9; sequence++){	// 9 felder, darum maximal 9 mal ausführen.
+					for(int sequence = 0; sequence < 9; sequence++){	// 9 felder, darum maximal 9 mal ausfï¿½hren.
 						// sagt welcher spieler dran ist. und fragt nach dem feld wo der spieler setzen will
 						System.out.print("Player vs Player:\n\n" + playground.toString() + "\n\nSpieler " + (playerOne.getSymbol().equals(aktuellesSymbol) ? playerOne.getName() : playerTwo.getName()) + " ist am Zug. Setze auf: ");
 						feld = input.nextLine();	// zu setzendes feld eingeben
 				
-						if(!playground.setzeSymbol(aktuellesSymbol, feld)) {	// versucht zu setzen. wenns klappt wird ein true zurückgegeben von der methode
-																				// setzeSymbol(). Ansonsten wird ein false zurückgegeben und die if-Abfrage wird ausgeführt.
+						if(!playground.setzeSymbol(aktuellesSymbol, feld)) {	// versucht zu setzen. wenns klappt wird ein true zurï¿½ckgegeben von der methode
+																				// setzeSymbol(). Ansonsten wird ein false zurï¿½ckgegeben und die if-Abfrage wird ausgefï¿½hrt.
 							System.out.println("Dieser Punkt funktioniert nicht.");
 							sequence--;		// damit der gleiche spieler wieder in zug kommt weil er nicht setzen konnte, wird sequence mit 1 subtrahiert.
 						}else {
 							System.out.println("Setzen war erfolgreich.");		// wenn gesetzt werden konnte, wird das ausgegeben.
 						}
-						if(playground.getWinner().equals(playerOne.getSymbol())) {	// prüfen ob spieler 1 gewonnen hat
-							playerOne.incScore();		// wenn ja wird ihm ein punkt gewährt.
-							sequence = 100;			// und um die for-schleife zu beenden wird sequence mit einer Zahl größer 9 überschrieben.
-						}else if(playground.getWinner().equals(playerTwo.getSymbol())){		// prüft ob spieler2 gewonnen hat und dann gleiches Prinzip.
+						if(playground.getWinner().equals(playerOne.getSymbol())) {	// prï¿½fen ob spieler 1 gewonnen hat
+							playerOne.incScore();		// wenn ja wird ihm ein punkt gewï¿½hrt.
+							sequence = 100;			// und um die for-schleife zu beenden wird sequence mit einer Zahl grï¿½ï¿½er 9 ï¿½berschrieben.
+						}else if(playground.getWinner().equals(playerTwo.getSymbol())){		// prï¿½ft ob spieler2 gewonnen hat und dann gleiches Prinzip.
 							playerTwo.incScore();
 							sequence = 100;
 						}else {
@@ -56,24 +55,24 @@ public class Main {
 					}
 					System.out.println(playground.toString());
 					if(!playground.getWinner().equals(playground.getFreiesFeld())) { // gibt aus wer gewonnen hat oder ob es ein Untenschieden ist.
-						System.out.println("Gewonnen hat: "  + (playground.getWinner().equals(playerOne.getSymbol()) ? playerOne.getName() : playerTwo.getName()) + ".\n\n" + playground.toString() + "\n\nBitte einmal Enter drücken um fortzufahren. ");
+						System.out.println("Gewonnen hat: "  + (playground.getWinner().equals(playerOne.getSymbol()) ? playerOne.getName() : playerTwo.getName()) + ".\n\n" + playground.toString() + "\n\nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					}else {
-						System.out.println("Gewonnen hat keiner. Es war ein Unentschieden. Bitte einmal Enter drücken um fortzufahren. ");
+						System.out.println("Gewonnen hat keiner. Es war ein Unentschieden. Bitte einmal Enter drï¿½cken um fortzufahren. ");
 					}
 					input.nextLine();	// damit programm zum stehen kommt und der benutzer lesen kann wer gewonnen hat.
 					break;
 				case "2": 
-					playground.spielfeldLeeren();	// spielfeld leeren/ mit freiesFeld-Symbol (*) füllen. siehe Playground klasse.
+					playground.spielfeldLeeren();	// spielfeld leeren/ mit freiesFeld-Symbol (*) fï¿½llen. siehe Playground klasse.
 					aktuellesSymbol = "X";
 					// auswahl von schwierigkeit
-					System.out.print("Bitte Schwierigkeit auswählen:\n (1) Einfach\n (2) Mittel\n (3) Schwer\n (default): Einfach\n\nIhre Wahl: ");
+					System.out.print("Bitte Schwierigkeit auswï¿½hlen:\n (1) Einfach\n (2) Mittel\n (3) Schwer\n (default): Einfach\n\nIhre Wahl: ");
 					String level = input.nextLine();
 					computer.setLevel(level);		// schwierigkeitslevel setzen.
 					
-					for(int sequence = 0; sequence < 9; sequence++){		// gleiches prinzip wie spieler vs spieler. max. 9 züge
+					for(int sequence = 0; sequence < 9; sequence++){		// gleiches prinzip wie spieler vs spieler. max. 9 zï¿½ge
 						// gibt aus welcher spieler am zug ist.
 						System.out.print("Player vs Computer:\n\n" + playground.toString() + "\n\nSpieler " + (playerVsCPU.getSymbol().equals(aktuellesSymbol) ? playerVsCPU.getName() : computer.getName()) + " ist am Zug. Setze auf: ");
-						if(playerVsCPU.getSymbol().equals(aktuellesSymbol)) {		// prüft ob spieler am zug ist. wenn ja wird verlangt das spieler 1 setzt (feldeingabe)
+						if(playerVsCPU.getSymbol().equals(aktuellesSymbol)) {		// prï¿½ft ob spieler am zug ist. wenn ja wird verlangt das spieler 1 setzt (feldeingabe)
 							feld = input.nextLine();
 							if(!playground.setzeSymbol(aktuellesSymbol, feld)) { // wenn er nicht setzen konnte wird sequence mit 1 subtrahiert damit spieler wieder in zug kommt.
 								System.out.println("Dieser Punkt funktioniert nicht.");
@@ -82,13 +81,13 @@ public class Main {
 								System.out.println("Setzen war erfolgreich.");
 								aktuellesSymbol = computer.getSymbol();
 							}
-						}else {		// CPU setzt auf ein feld und übergibt anschließend reihenfolge an spieler weiter.
+						}else {		// CPU setzt auf ein feld und ï¿½bergibt anschlieï¿½end reihenfolge an spieler weiter.
 							playground = computer.setPoint(playground);
 							aktuellesSymbol = playerVsCPU.getSymbol();
 						}
-						if(playground.getWinner().equals(playerVsCPU.getSymbol())) {	// kontrolle ob Spieler gewonnen hat. wenn ja wird ihm ein Punkt gewährt.
+						if(playground.getWinner().equals(playerVsCPU.getSymbol())) {	// kontrolle ob Spieler gewonnen hat. wenn ja wird ihm ein Punkt gewï¿½hrt.
 							playerVsCPU.incScore();
-							sequence = 100;		// damit for schleife beendet wird, wird sequence mit einer zahl über 9 überschrieben.
+							sequence = 100;		// damit for schleife beendet wird, wird sequence mit einer zahl ï¿½ber 9 ï¿½berschrieben.
 						}else if(playground.getWinner().equals(computer.getSymbol())){	// kontrolle ob CPU gewonnen hat. Programmablauf wie bei spieler.
 							computer.incScore();
 							sequence = 100;
@@ -96,60 +95,60 @@ public class Main {
 					}
 					System.out.println(playground.toString());
 					if(!playground.getWinner().equals(playground.getFreiesFeld())) {		// gibt aus wer gewonnen hat oder ob es ein unentschieden ist.
-						System.out.println("Gewonnen hat: "  + (playground.getWinner().equals(playerVsCPU.getSymbol()) ? playerVsCPU.getName() : computer.getName()) + ".\n\n" + playground.toString() + "\n\nBitte einmal Enter drücken um fortzufahren. ");
+						System.out.println("Gewonnen hat: "  + (playground.getWinner().equals(playerVsCPU.getSymbol()) ? playerVsCPU.getName() : computer.getName()) + ".\n\n" + playground.toString() + "\n\nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					}else {
-						System.out.println("Gewonnen hat keiner. Es war ein Unentschieden. Bitte einmal Enter drücken um fortzufahren. ");
+						System.out.println("Gewonnen hat keiner. Es war ein Unentschieden. Bitte einmal Enter drï¿½cken um fortzufahren. ");
 					}
 					input.nextLine(); 	// damit programm zum stehen kommt und der benutzer lesen kann wer gewonnen hat.
 					break;
-				case "3":	// score ausgeben. gibt player vs player score als erstes aus, anschließend player vs CPU
+				case "3":	// score ausgeben. gibt player vs player score als erstes aus, anschlieï¿½end player vs CPU
 					System.out.println("\n\n\n" + playerOne.getName() + " " + playerOne.getScore() + " : " + playerTwo.getScore()  + " " + playerTwo.getName());
-					System.out.println(playerVsCPU.getName() + " " + playerVsCPU.getScore() + " : " + computer.getScore()  + " " + computer.getName() + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.println(playerVsCPU.getName() + " " + playerVsCPU.getScore() + " : " + computer.getScore()  + " " + computer.getName() + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine();	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
 				case "4": 
-					System.out.print("\n\n\nWie möchten Sie " + playerOne.getName() + " nennen: ");		// spieler 1 namensgebung
+					System.out.print("\n\n\nWie mï¿½chten Sie " + playerOne.getName() + " nennen: ");		// spieler 1 namensgebung
 					playerOne.setName(input.nextLine());
-					System.out.print("\nIhr neuer Name lautet: " + playerOne.getName() + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.print("\nIhr neuer Name lautet: " + playerOne.getName() + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine();	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
 				case "5": 
-					System.out.print("\n\n\nWie möchten Sie " + playerTwo.getName() + " nennen: ");	// spieler 2 namensgebung
+					System.out.print("\n\n\nWie mï¿½chten Sie " + playerTwo.getName() + " nennen: ");	// spieler 2 namensgebung
 					playerTwo.setName(input.nextLine());
-					System.out.print("\nIhr neuer Name lautet: " + playerTwo.getName() + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.print("\nIhr neuer Name lautet: " + playerTwo.getName() + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine();	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
 				case "6": 
-					Player zwischenspeicher = playerOne;		// player vs player reihenfolge ändern. mit dreieckstausch.
+					Player zwischenspeicher = playerOne;		// player vs player reihenfolge ï¿½ndern. mit dreieckstausch.
 					playerOne = playerTwo;
 					playerTwo = zwischenspeicher;
-					System.out.println("Spieler gegen Spieler Reihenfolge wurde geändert." + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.println("Spieler gegen Spieler Reihenfolge wurde geï¿½ndert." + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine(); 	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
 				case "7":
-					System.out.print("\n\n\nWie möchten Sie " + playerVsCPU.getName() + " nennen: ");		// spielernamen ändern, welches gegen CPU spielt.
+					System.out.print("\n\n\nWie mï¿½chten Sie " + playerVsCPU.getName() + " nennen: ");		// spielernamen ï¿½ndern, welches gegen CPU spielt.
 					playerVsCPU.setName(input.nextLine());
-					System.out.print("\nIhr neuer Name lautet: " + playerVsCPU.getName() + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.print("\nIhr neuer Name lautet: " + playerVsCPU.getName() + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine(); 	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
-				case "8":		// spielerreihenfolge mit CPU ändern.
-					if(playerVsCPU.getSymbol().equals("O")) {		// prüfen ob Symbol von spieler "O" ist. wenn ja spieler symbol auf "X" setzen und von CPU symbol auf "O" setzen.
+				case "8":		// spielerreihenfolge mit CPU ï¿½ndern.
+					if(playerVsCPU.getSymbol().equals("O")) {		// prï¿½fen ob Symbol von spieler "O" ist. wenn ja spieler symbol auf "X" setzen und von CPU symbol auf "O" setzen.
 						playerVsCPU.setSymbol("X");
 						computer.setSymbol("O");
 					}else {
 						playerVsCPU.setSymbol("O");		// Spieler symbol auf "O" setzen und CPU symbol auf "X"
 						computer.setSymbol("X");
 					}
-					System.out.println("Spieler gegen CPU Reihenfolge wurde geändert." + ". \nBitte einmal Enter drücken um fortzufahren. ");
+					System.out.println("Spieler gegen CPU Reihenfolge wurde geï¿½ndert." + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");
 					input.nextLine(); 	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
 				case "9": 
-					System.out.println("Programm wird nun beendet." + ". \nBitte einmal Enter drücken um fortzufahren. ");		// programm beenden.
+					System.out.println("Programm wird nun beendet." + ". \nBitte einmal Enter drï¿½cken um fortzufahren. ");		// programm beenden.
 					input.nextLine();	// damit programm zum stehen kommt und der benutzer lesen kann was passiert.
 					break;
-				default: System.out.println("Ungültige Auswahl.");		// ungültige auswahl.
+				default: System.out.println("Ungï¿½ltige Auswahl.");		// ungï¿½ltige auswahl.
 			}
 		}
-		input.close();		// scanner schließen.
+		input.close();		// scanner schlieï¿½en.
 	}	
 }
